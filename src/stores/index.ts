@@ -1,13 +1,13 @@
-import CommonStore from "./PhoneStore/store";
+import NumPadStore from "./NumPadStore";
 
 /**
  * 여러가지 분류로 나뉘어 있는 Store를 하나로 combine.
  */
 
 class RootStore {
-  common: any;
+  numpadStore: any;
   constructor() {
-    this.common = new CommonStore(this);
+    this.numpadStore = new NumPadStore(this);
   }
 }
 
