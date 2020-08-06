@@ -31,15 +31,15 @@ const NumberText = styled.span`
 
 interface Props {
   numberValue: number;
-  // clickNumber: Function;
 }
 
 const NumberButton: FC<Props> = (props) => {
   const {
-    numpadStore: { AddNumber, DeleteNUmber },
+    numpadStore: { AddNumber },
   } = useStores();
 
   const { numberValue } = props;
+
   return (
     <Container onClick={() => AddNumber(numberValue)}>
       <NumberBox>

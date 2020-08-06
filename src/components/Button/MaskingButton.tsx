@@ -32,6 +32,9 @@ const MaskingButton = () => {
     numpadStore: { useMaskingMode, SetMaskingMode },
   } = useStores();
 
+  // 체크박스 클릭 시 store에서 관리중인 마스킹 모드 상태값 변경
+  // 마스킹 모드가 on 일때는 스타일 및 체크 표시.
+
   return (
     <CheckBox
       useMask={useMaskingMode}

@@ -55,6 +55,7 @@ const DisplayPoint = () => {
   return (
     <Container>
       <PointBox>
+        {/* 한번할때마다 몇포인트가 적립되는지 몰라서 1로 표시 */}
         <PointText>1 P</PointText>
       </PointBox>
       <Box>
@@ -62,6 +63,7 @@ const DisplayPoint = () => {
       </Box>
       <Divider />
       <Box>
+        {/* 스토어의 합쳐진 point 노출 */}
         <PointGuideText>보유 포인트는 {point} P 입니다.</PointGuideText>
       </Box>
     </Container>

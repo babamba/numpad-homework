@@ -39,6 +39,7 @@ const Header = () => {
     numpadStore: { ResetStore },
   } = useStores();
 
+  // 나가기 버튼을 누를 때 입력되었던 정보 및 Store에서 관리하던 상태값 초기화.
   const _handleGoBack = () => {
     ResetStore();
     history.push("/");

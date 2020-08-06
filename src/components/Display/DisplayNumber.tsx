@@ -18,11 +18,7 @@ const DisplayContent = styled.span`
   line-height: 84px;
 `;
 
-interface Props {
-  //   value: string;
-}
-
-const DisplayNumber: FC<Props> = (props) => {
+const DisplayNumber: FC = () => {
   const {
     numpadStore: { hypenNumber, useMaskingMode },
   } = useStores();
@@ -47,11 +43,10 @@ const DisplayNumber: FC<Props> = (props) => {
           }
         }
       });
-      // 구분자 다시 처리하여 리턴
-      console.log("replaceArr : ", replaceArr.join("-"));
+      // 하이픈 구분자 첨부하여 다시 하나로 합치고 리턴
       return replaceArr.join("-");
     } else {
-      // 010 앞부분밖에 번호가 없을땐 그대로 리턴
+      // 010 앞부분 밖에 번호가 없을땐 그대로 리턴
       return hypenNumber;
     }
   };
@@ -59,6 +54,10 @@ const DisplayNumber: FC<Props> = (props) => {
   return (
     <Conatiner>
       <DisplayContent>
+        {/*
+         * store 의 마스킹 모드 상태가 on일떄는 마스킹처리하여 보여주고
+         * off 일때는 그냥 보여준다.
+         */}
         {useMaskingMode ? masking(hypenNumber) : hypenNumber}
       </DisplayContent>
     </Conatiner>

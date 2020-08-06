@@ -34,6 +34,7 @@ const BackButton = () => {
     numpadStore: { DeleteNumber },
   } = useStores();
 
+  // 클릭 시 store에서 관리중인 전화번호 끝자리를 삭제
   return (
     <Container onClick={() => DeleteNumber()}>
       <BackArrow src={require("../../assets/back-icon.png")} alt="지우기" />

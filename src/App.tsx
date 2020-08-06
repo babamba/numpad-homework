@@ -44,7 +44,6 @@ function App() {
   } = useStores();
 
   useEffect(() => {
-    console.log("hasError : ", hasError);
     if (hasError) showAlert();
   }, [hasError]);
 

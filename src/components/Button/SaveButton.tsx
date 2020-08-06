@@ -30,10 +30,7 @@ const SaveButton = () => {
   } = useStores();
 
   const handleSubmit = async () => {
-    //TODO validation;
-
     const result = await validation();
-    console.log("result : ", result);
 
     if (result) {
       SetError(false, "");
@@ -43,15 +40,16 @@ const SaveButton = () => {
   };
 
   const validation = async () => {
-    let check = false;
-    let strArr = hypenNumber.split("-");
-    let replaceHypenNum = strArr.join("");
-
-    console.log("strArr.length  : ", strArr.length);
-    console.log("replace : ", replaceHypenNum.length);
+    let check = false; // validation check 에서 통과했는지의 Flag 값
+    let strArr = hypenNumber.split("-"); // 구분자를 통한 배열생성.(앞번호, 중간번호, 끝번호 체크)
+    let replaceHypenNum = strArr.join(""); // 구분자가 없는 문자열.(길이 체크)
 
     if (strArr.length < 3) {
-      SetError(true, "휴대폰 번호를 입력해주세요.");
+      if (strArr[0] === "010") {
+        SetError(true, "11자리 휴대폰 번호를 입력해주세요.");
+      } else {
+        SetError(true, "10자리 휴대폰 번호를 입력해주세요.");
+      }
     } else if (strArr.length === 3) {
       if (strArr[0] === "010") {
         if (replaceHypenNum.length < 11) {
@@ -61,7 +59,6 @@ const SaveButton = () => {
         }
       } else {
         if (replaceHypenNum.length < 10) {
-          console.log();
           SetError(true, "10자리 휴대폰 번호를 정확히 입력해주세요.");
         } else if (replaceHypenNum.length > 10) {
           SetError(true, "10자리 휴대폰 번호를 정확히 입력해주세요.");
