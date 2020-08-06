@@ -1,14 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App/App";
+import App from "./App";
 import { Provider } from "mobx-react";
 import * as serviceWorker from "./serviceWorker";
 import GlobalStyle from "./styles/global-styles";
+import { BrowserRouter } from "react-router-dom";
+import RootStore from "./stores/index";
+
+const rootStore = new RootStore(); // *** 루트 스토어 생성
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <BrowserRouter>
+      <GlobalStyle />
+      <Provider {...rootStore}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
