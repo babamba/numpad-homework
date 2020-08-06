@@ -26,6 +26,7 @@ const CloseText = styled.span`
   line-height: 22px;
   padding-top: 4px;
   padding-right: 11px;
+  z-index: 2;
 `;
 
 const BackIcon = styled.img`
@@ -49,7 +50,10 @@ const Header = () => {
     <Container onClick={() => _handleGoBack()}>
       <CloseBox>
         <CloseText>나가기</CloseText>
-        <BackIcon src={require("../../assets/ic_close.svg")} alt="나가기" />
+        <BackIcon
+          src={require("../../assets/images/ic_close.svg")}
+          alt="나가기"
+        />
       </CloseBox>
     </Container>
   );
