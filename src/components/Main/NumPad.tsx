@@ -11,29 +11,28 @@ const Container = styled.div`
   flex: 3;
 `;
 
-interface NumPadProps {
-  //   clickNumber: Function;
-  //   removeNumber: Function;
-}
+const NumPad: FC = () => {
+  const _keypadCount = 12;
 
-const NumPad: FC<NumPadProps> = (props) => {
-  //   const { clickNumber } = props;
-  return (
-    <Container>
-      <NumberButton numberValue={0} />
-      <NumberButton numberValue={1} />
-      <NumberButton numberValue={2} />
-      <NumberButton numberValue={3} />
-      <NumberButton numberValue={4} />
-      <NumberButton numberValue={5} />
-      <NumberButton numberValue={6} />
-      <NumberButton numberValue={7} />
-      <NumberButton numberValue={8} />
-      <BackButton />
-      <NumberButton numberValue={9} />
-      <SaveButton />
-    </Container>
-  );
+  // 넘버 패드 렌더링
+  const renderKeyPad = () => {
+    let list = [];
+    for (let i = 0; i < _keypadCount; i++) {
+      if (i === 9) {
+        list.push(<BackButton key={i} />);
+      } else if (i === 10) {
+        list.push(<NumberButton key={i} numberValue={i - 1} />);
+      } else if (i === 11) {
+        list.push(<SaveButton key={i} />);
+      } else {
+        list.push(<NumberButton key={i} numberValue={i} />);
+      }
+    }
+
+    return list;
+  };
+
+  return <Container>{renderKeyPad()}</Container>;
 };
 
 export default NumPad;

@@ -38,13 +38,47 @@ class NumberPadStore {
     this.point = this.point + value;
   };
 
+  @action.bound
+  OnKeyAddNumber = (keyCode: number) => {
+    switch (keyCode) {
+      case 48:
+        this.AddNumber("0");
+        break;
+      case 49:
+        this.AddNumber("1");
+        break;
+      case 50:
+        this.AddNumber("2");
+        break;
+      case 51:
+        this.AddNumber("3");
+        break;
+      case 52:
+        this.AddNumber("4");
+        break;
+      case 53:
+        this.AddNumber("5");
+        break;
+      case 54:
+        this.AddNumber("6");
+        break;
+      case 55:
+        this.AddNumber("7");
+        break;
+      case 56:
+        this.AddNumber("8");
+        break;
+      case 57:
+        this.AddNumber("9");
+        break;
+    }
+  };
+
   /**
    * 키패드 입력시 전화번호를 추가한다.
    */
   @action.bound
   AddNumber = (value: string) => {
-    console.log("this.originNumber : ", this.originNumber);
-    console.log("length  = ", this.originNumber.length);
     if (this.originNumber.length < 11) {
       this.originNumber = this.originNumber + value;
       const hypen = this.autoHypenPhone(this.originNumber);
@@ -57,9 +91,6 @@ class NumberPadStore {
    */
   @action.bound
   DeleteNumber = () => {
-    console.log("this.originNumber : ", this.originNumber);
-    console.log("length  = ", this.originNumber.length);
-
     if (this.originNumber.length > 2) {
       const sliceStr = this.originNumber.slice(0, -1);
       this.originNumber = sliceStr;
@@ -69,8 +100,7 @@ class NumberPadStore {
     }
   };
 
-  // get autoHypenPhone() {
-
+  // 정규식을 통해 하이픈 주입
   autoHypenPhone = (str: string) => {
     str = str.replace(/[^0-9]/g, "");
     let temp = "";
@@ -80,21 +110,18 @@ class NumberPadStore {
       temp += str.substr(0, 3);
       temp += "-";
       temp += str.substr(3);
-      console.log("temp : ", temp);
     } else if (str.length < 11) {
       temp += str.substr(0, 3);
       temp += "-";
       temp += str.substr(3, 3);
       temp += "-";
       temp += str.substr(6);
-      console.log("temp : ", temp);
     } else {
       temp += str.substr(0, 3);
       temp += "-";
       temp += str.substr(3, 4);
       temp += "-";
       temp += str.substr(7);
-      console.log("temp : ", temp);
     }
     return temp;
   };
