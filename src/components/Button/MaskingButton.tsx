@@ -14,6 +14,7 @@ const CheckBox = styled.div`
     props.useMask ? "2px solid #35D48D" : "2px solid #CED3D6"};
   border-radius: 4px;
   border-radius: 4px;
+  z-index: 1;
 `;
 
 const CheckIcon = styled.div`
