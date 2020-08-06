@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { observer } from "mobx-react";
 import useStores from "../../hooks/useStores";
@@ -23,6 +23,8 @@ const DisplayNumber: FC = () => {
     numpadStore: { hypenNumber, useMaskingMode },
   } = useStores();
 
+  const [displayNum, setDisplayNum] = useState(hypenNumber);
+
   const masking = (hypenNumber: string) => {
     let strArr = hypenNumber.split("-");
 
@@ -44,12 +46,47 @@ const DisplayNumber: FC = () => {
         }
       });
       // 하이픈 구분자 첨부하여 다시 하나로 합치고 리턴
-      return replaceArr.join("-");
+      setDisplayNum(replaceArr.join("-"));
     } else {
       // 010 앞부분 밖에 번호가 없을땐 그대로 리턴
-      return hypenNumber;
+      setDisplayNum(hypenNumber);
     }
   };
+
+  useEffect(() => {
+    const current = displayNum.split("-").join("").length; // 변경된 값
+    const next = hypenNumber.split("-").join("").length; // 현재화면 노출값
+
+    if (useMaskingMode) {
+      // 마스킹 모드면
+      if (current < next) {
+        // 번호 삭제가 아닌 추가면
+        const lastChar = hypenNumber.slice(-1);
+        setDisplayNum(displayNum + lastChar);
+        let timeout = setTimeout(() => {
+          masking(hypenNumber);
+        }, 1000);
+      } else {
+        // 번호 삭제이면 대기없이 바로 마스킹처리
+        masking(hypenNumber);
+      }
+    } else {
+      //그대로 노출
+      setDisplayNum(hypenNumber);
+    }
+
+    return () => {
+      console.log("clear");
+    };
+  }, [hypenNumber]);
+
+  useEffect(() => {
+    if (useMaskingMode) {
+      masking(hypenNumber);
+    } else {
+      setDisplayNum(hypenNumber);
+    }
+  }, [useMaskingMode]);
 
   return (
     <Conatiner>
@@ -58,7 +95,7 @@ const DisplayNumber: FC = () => {
          * store 의 마스킹 모드 상태가 on일떄는 마스킹처리하여 보여주고
          * off 일때는 그냥 보여준다.
          */}
-        {useMaskingMode ? masking(hypenNumber) : hypenNumber}
+        {displayNum}
       </DisplayContent>
     </Conatiner>
   );
