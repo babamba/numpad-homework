@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>ic_close</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic_close" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <path d="M12.75,11 L20.625,18.875 C21.125,19.375 21.125,20.125 20.625,20.625 C20.125,21.125 19.375,21.125 18.875,20.625 L11,12.75 L3.125,20.625 C2.625,21.125 1.875,21.125 1.375,20.625 C0.875,20.125 0.875,19.375 1.375,18.875 L9.25,11 L1.375,3.125 C0.875,2.625 0.875,1.875 1.375,1.375 C1.875,0.875 2.625,0.875 3.125,1.375 L11,9.25 L18.875,1.375 C19.375,0.875 20.125,0.875 20.625,1.375 C21.125,1.875 21.125,2.625 20.625,3.125 L12.75,11 L12.75,11 Z" fill="#A9AFB3"></path>
+            <rect id="Rectangle" x="0" y="0" width="22" height="22"></rect>
+        </g>
+    </g>
+</svg>
