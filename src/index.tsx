@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider } from "mobx-react";
+import "mobx-react-lite/batchingForReactDom";
 import * as serviceWorker from "./serviceWorker";
 import GlobalStyle from "./styles/global-styles";
 import { BrowserRouter } from "react-router-dom";
