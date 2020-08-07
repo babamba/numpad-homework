@@ -24,6 +24,7 @@ const DisplayNumber: FC = () => {
   } = useStores();
 
   const [displayNum, setDisplayNum] = useState(hypenNumber);
+  const timerRef = useRef<any>(null);
 
   const masking = (hypenNumber: string) => {
     let strArr = hypenNumber.split('-');
@@ -58,14 +59,17 @@ const DisplayNumber: FC = () => {
     const next = hypenNumber.split('-').join('').length; // 현재화면 노출값
 
     if (useMaskingMode) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
       // 마스킹 모드면
       if (current < next) {
         // 번호 삭제가 아닌 추가면
         const lastChar = hypenNumber.slice(-1);
         setDisplayNum(displayNum + lastChar);
-        let timeout = setTimeout(() => {
+        timerRef.current = setTimeout(() => {
           masking(hypenNumber);
-        }, 1000);
+        }, 3000);
       } else {
         // 번호 삭제이면 대기없이 바로 마스킹처리
         masking(hypenNumber);
@@ -74,6 +78,9 @@ const DisplayNumber: FC = () => {
       //그대로 노출
       setDisplayNum(hypenNumber);
     }
+    return () => {
+      clearTimeout(timerRef.current);
+    };
   }, [hypenNumber]);
 
   useEffect(() => {
