@@ -1,7 +1,7 @@
-import React, { FC, useState, useEffect, useRef } from "react";
-import styled from "styled-components";
-import { observer } from "mobx-react";
-import useStores from "../../hooks/useStores";
+import React, { FC, useState, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { observer } from 'mobx-react';
+import useStores from '../../hooks/useStores';
 
 const Conatiner = styled.div`
   padding: 41px 48px;
@@ -10,7 +10,7 @@ const Conatiner = styled.div`
   align-items: center;
 `;
 const DisplayContent = styled.span`
-  font-family: "SpoqaHanSans-Regular";
+  font-family: 'SpoqaHanSans-Regular';
   font-size: 56px;
   color: #4d5256;
   letter-spacing: 0;
@@ -20,13 +20,13 @@ const DisplayContent = styled.span`
 
 const DisplayNumber: FC = () => {
   const {
-    numpadStore: { hypenNumber, useMaskingMode },
+    numpadStore: { hypenNumber, useMaskingMode }
   } = useStores();
 
   const [displayNum, setDisplayNum] = useState(hypenNumber);
 
   const masking = (hypenNumber: string) => {
-    let strArr = hypenNumber.split("-");
+    let strArr = hypenNumber.split('-');
 
     // 010 이후로 번호가 있다면.
     if (strArr.length > 1) {
@@ -36,17 +36,17 @@ const DisplayNumber: FC = () => {
           return item;
         } else {
           if (item.length > 0) {
-            let replace = "";
+            let replace = '';
             for (const str of item) {
               // 숫자 개수만큼 *처리
-              replace = replace + "*";
+              replace = replace + '*';
             }
             return replace;
           }
         }
       });
       // 하이픈 구분자 첨부하여 다시 하나로 합치고 리턴
-      setDisplayNum(replaceArr.join("-"));
+      setDisplayNum(replaceArr.join('-'));
     } else {
       // 010 앞부분 밖에 번호가 없을땐 그대로 리턴
       setDisplayNum(hypenNumber);
@@ -54,8 +54,8 @@ const DisplayNumber: FC = () => {
   };
 
   useEffect(() => {
-    const current = displayNum.split("-").join("").length; // 변경된 값
-    const next = hypenNumber.split("-").join("").length; // 현재화면 노출값
+    const current = displayNum.split('-').join('').length; // 변경된 값
+    const next = hypenNumber.split('-').join('').length; // 현재화면 노출값
 
     if (useMaskingMode) {
       // 마스킹 모드면
@@ -74,10 +74,6 @@ const DisplayNumber: FC = () => {
       //그대로 노출
       setDisplayNum(hypenNumber);
     }
-
-    return () => {
-      console.log("clear");
-    };
   }, [hypenNumber]);
 
   useEffect(() => {
